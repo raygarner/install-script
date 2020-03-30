@@ -27,7 +27,7 @@ read -p 'mounting fs...'
 mount "/dev/$DISK$FS_NO" /mnt
 
 read -p 'installing arch...'
-pacstrap /mnt base linux linux-firmware wpa_supplicant netctl dhcpcd vim grub git
+pacstrap /mnt base linux linux-firmware wpa_supplicant netctl dhcpcd vim grub git vi sudo
 
 read -p 'generating fstab file...'
 genfstab -U /mnt >> /mnt/etc/fstab
