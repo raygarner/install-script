@@ -30,6 +30,7 @@ echo "127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
 echo 'enter root password'
 passwd
 
+read -p 'enter disk: ' DISK
 read -p 'installing grub...'
 grub-install --target=i386-pc "/dev/$DISK"
 
