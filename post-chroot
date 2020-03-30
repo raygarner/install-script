@@ -7,7 +7,7 @@ read -p 'setting clock...'
 hwclock --systohc
 
 read -p 'uncomment your locale...'
-vim /etc/local.gen
+vim /etc/locale.gen
 
 read -p 'running locale-gen...'
 locale-gen
