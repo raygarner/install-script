@@ -1,39 +1,4 @@
 #!/bin/sh
-#BIOS mode
-
-read -p 'loading uk kb layout...'
-loadkeys uk
-
-read -p 'enabling time and date...'
-timedatectl set-ntp true
-
-#eg sda1
-read -p 'enter disk to install arch on: ' DISK
-
-fdisk "/dev/$DISK"
-
-#eg 1
-read -p 'enter the swap partition number: ' SWAP_NO
-read -p 'enter the filesystem partition number: ' FS_NO
-
-read -p 'making filesystem...'
-mkfs.ext4 "/dev/$DISK$FS_NO"
-
-read -p 'making swap partition...'
-mkswap "/dev/$DISK$SWAP_NO"
-swapon "/dev/$DISK$SWAP_NO"
-
-read -p 'mounting fs...'
-mount "/dev/$DISK$FS_NO" /mnt
-
-read -p 'installing arch...'
-pacstrap /mnt base linux linux-firmware wpa_supplicant netctl dhcpcd vim grub
-
-read -p 'generating fstab file...'
-genfstab -U /mnt >> /mnt/etc/fstab
-
-read -p 'changing root to /mnt...'
-arch-chroot /mnt
 
 read -p 'linking zoneinfo and localtime...'
 ln -sf /usr/share/zoneinfo/GMT /etc/localtime
