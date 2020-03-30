@@ -31,7 +31,7 @@ echo 'enter root password'
 passwd
 
 read -p 'installing grub...'
-grub-install --target=i386-pc /dev/$DISK
+grub-install --target=i386-pc "/dev/$DISK"
 
 read -p 'generating grub config...'
 grub-mkconfig -o /boot/grub/grub.cfg
