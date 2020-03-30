@@ -1,8 +1,10 @@
 #!/bin/sh
 #BIOS mode
 
+read -p 'loading uk kb layout...'
 loadkeys uk
 
+read -p 'enabling time and date...'
 timedatectl set-ntp true
 
 #eg sda1
@@ -14,42 +16,58 @@ fdisk "/dev/$DISK"
 read -p 'enter the swap partition number: ' SWAP_NO
 read -p 'enter the filesystem partition number: ' FS_NO
 
+read -p 'making filesystem...'
 mkfs.ext4 "/dev/$DISK$FS_NO"
 
+read -p 'making swap partition...'
 mkswap "/dev/$DISK$SWAP_NO"
 swapon "/dev/$DISK$SWAP_NO"
 
+read -p 'mounting fs...'
 mount "/dev/$DISK$FS_NO" /mnt
 
+read -p 'installing arch...'
 pacstrap /mnt base linux linux-firmware wpa_supplicant netctl dhcpcd vim grub
 
+read -p 'generating fstab file...'
 genfstab -U /mnt >> /mnt/etc/fstab
 
+read -p 'changing root to /mnt...'
 arch-chroot /mnt
 
+read -p 'linking zoneinfo and localtime...'
 ln -sf /usr/share/zoneinfo/GMT /etc/localtime
 
+read -p 'setting clock...'
 hwclock --systohc
 
+read -p 'uncomment your locale...'
 vim /etc/local.gen
 
+read -p 'running locale-gen...'
 locale-gen
 
+read -p 'setting language...'
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 
+read -p 'setting keymap...'
 echo "KEYMAP=uk" > /etc/vconsole.conf
 
 read -p 'enter the hostname for this new OS: ' HOSTNAME
 
 echo "$HOSTNAME" > /etc/hostname
 
+read -p 'populating hosts file...'
 echo "127.0.0.1\tlocalhost" > /etc/hosts
 echo "::1\t\t\tlocalhost" >> /etc/hosts
 echo "127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME"
 
+echo 'enter root password'
 passwd
 
+read -p 'installing grub...'
 grub-install --target=i386-pc /dev/$DISK
 
+read -p 'generating grub config...'
 grub-mkconfig -o /boot/grub/grub.cfg
 
