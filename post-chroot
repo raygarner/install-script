@@ -25,7 +25,7 @@ echo "$HOSTNAME" > /etc/hostname
 read -p 'populating hosts file...'
 echo "127.0.0.1\tlocalhost" > /etc/hosts
 echo "::1\t\t\tlocalhost" >> /etc/hosts
-echo "127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME"
+echo "127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
 
 echo 'enter root password'
 passwd
