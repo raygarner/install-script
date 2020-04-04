@@ -1,38 +1,38 @@
-#!/bin/sh
+#!/bin/bash
 #BIOS mode
 
-read -p 'loading uk kb layout...'
+read -rp 'loading uk kb layout...'
 loadkeys uk
 
-read -p 'enabling time and date...'
+read -rp 'enabling time and date...'
 timedatectl set-ntp true
 
 #eg sda1
-read -p 'enter disk to install arch on: ' DISK
+read -rp 'enter disk to install arch on: ' DISK
 
 fdisk "/dev/$DISK"
 
 #eg 1
-read -p 'enter the swap partition number: ' SWAP_NO
-read -p 'enter the filesystem partition number: ' FS_NO
+read -rp 'enter the swap partition number: ' SWAP_NO
+read -rp 'enter the filesystem partition number: ' FS_NO
 
-read -p 'making filesystem...'
+read -rp 'making filesystem...'
 mkfs.ext4 "/dev/$DISK$FS_NO"
 
-read -p 'making swap partition...'
+read -rp 'making swap partition...'
 mkswap "/dev/$DISK$SWAP_NO"
 swapon "/dev/$DISK$SWAP_NO"
 
-read -p 'mounting fs...'
+read -rp 'mounting fs...'
 mount "/dev/$DISK$FS_NO" /mnt
 
-read -p 'installing arch...'
+read -rp 'installing arch...'
 pacstrap /mnt base linux linux-firmware wpa_supplicant netctl dhcpcd vim grub git vi sudo
 
-read -p 'generating fstab file...'
+read -rp 'generating fstab file...'
 genfstab -U /mnt >> /mnt/etc/fstab
 
-read -p 'changing root to /mnt...'
+read -rp 'changing root to /mnt...'
 arch-chroot /mnt
 
 

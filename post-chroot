@@ -1,39 +1,39 @@
-#!/bin/sh
+#!/bin/bash
 
-read -p 'linking zoneinfo and localtime...'
+read -rp 'linking zoneinfo and localtime...'
 ln -sf /usr/share/zoneinfo/GMT /etc/localtime
 
-read -p 'setting clock...'
+read -rp 'setting clock...'
 hwclock --systohc
 
-read -p 'uncomment your locale...'
+read -rp 'uncomment your locale...'
 vim /etc/locale.gen
 
-read -p 'running locale-gen...'
+read -rp 'running locale-gen...'
 locale-gen
 
-read -p 'setting language...'
+read -rp 'setting language...'
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 
-read -p 'setting keymap...'
+read -rp 'setting keymap...'
 echo "KEYMAP=uk" > /etc/vconsole.conf
 
-read -p 'enter the hostname for this new OS: ' HOSTNAME
+read -rp 'enter the hostname for this new OS: ' HOSTNAME
 
 echo "$HOSTNAME" > /etc/hostname
 
-read -p 'populating hosts file...'
-echo "127.0.0.1\tlocalhost" > /etc/hosts
-echo "::1\t\t\tlocalhost" >> /etc/hosts
-echo "127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
+read -rp 'populating hosts file...'
+printf "127.0.0.1\tlocalhost" > /etc/hosts
+printf "::1\t\t\tlocalhost" >> /etc/hosts
+printf "127.0.1.1\t%s.localdomain %s" "$HOSTNAME" "$HOSTNAME" >> /etc/hosts
 
 echo 'enter root password'
 passwd
 
-read -p 'enter disk: ' DISK
-read -p 'installing grub...'
+read -rp 'enter disk: ' DISK
+read -rp 'installing grub...'
 grub-install --target=i386-pc "/dev/$DISK"
 
-read -p 'generating grub config...'
+read -rp 'generating grub config...'
 grub-mkconfig -o /boot/grub/grub.cfg
 
