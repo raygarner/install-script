@@ -1,7 +1,11 @@
 # Arch install script
 
 ## Usage:
+**Boot into arch iso**
 ```
+pacman -Sy git
+git clone https://github.com/raygarner/install-script
+cd install-script
 ./init
 ./post-chroot
 exit
