@@ -32,6 +32,9 @@ pacstrap /mnt base linux linux-firmware wpa_supplicant netctl dhcpcd vim grub gi
 read -rp 'generating fstab file...'
 genfstab -U /mnt >> /mnt/etc/fstab
 
+read -rp 'moving post-chroot script to /mnt...'
+mv post-chroot /mnt
+
 read -rp 'changing root to /mnt...'
 arch-chroot /mnt
 
