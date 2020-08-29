@@ -37,5 +37,3 @@ mv post-chroot /mnt
 
 read -rp 'changing root to /mnt...'
 arch-chroot /mnt
-
-

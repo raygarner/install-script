@@ -23,9 +23,9 @@ read -rp 'enter the hostname for this new OS: ' HOSTNAME
 echo "$HOSTNAME" > /etc/hostname
 
 read -rp 'populating hosts file...'
-printf "127.0.0.1\tlocalhost" > /etc/hosts
-printf "::1\t\t\tlocalhost" >> /etc/hosts
-printf "127.0.1.1\t%s.localdomain %s" "$HOSTNAME" "$HOSTNAME" >> /etc/hosts
+printf "127.0.0.1\tlocalhost\n" > /etc/hosts
+printf "::1\t\tlocalhost\n" >> /etc/hosts
+printf "127.0.1.1\t%s.localdomain %s\n" "$HOSTNAME" "$HOSTNAME" >> /etc/hosts
 
 echo 'enter root password'
 passwd
