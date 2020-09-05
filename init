@@ -19,7 +19,7 @@ read -rp 'enter the filesystem partition number: ' FS_NO
 
 read -rp 'making filesystem...'
 mkfs.ext4 "/dev/$DISK$FS_NO"
-#mkfs.vfat "/dev/$DISK$EFI_NO" #UEFI
+#mkfs.vfat -F32 "/dev/$DISK$EFI_NO" #UEFI
 
 read -rp 'making swap partition...'
 mkswap "/dev/$DISK$SWAP_NO"
