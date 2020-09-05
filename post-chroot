@@ -30,7 +30,7 @@ printf "127.0.1.1\t%s.localdomain %s\n" "$HOSTNAME" "$HOSTNAME" >> /etc/hosts
 echo 'enter root password'
 passwd
 
-read -rp 'enter disk: ' DISK
+read -rp 'enter disk: ' DISK #eg sda
 read -rp 'installing grub...'
 grub-install --target=i386-pc "/dev/$DISK"
 #uefi:
