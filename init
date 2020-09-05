@@ -1,5 +1,4 @@
 #!/bin/bash
-#BIOS mode
 
 read -rp 'loading uk kb layout...'
 loadkeys uk
