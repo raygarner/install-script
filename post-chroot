@@ -32,8 +32,8 @@ passwd
 
 read -rp 'enter disk: ' DISK #eg sda
 read -rp 'installing grub...'
-grub-install --target=i386-pc "/dev/$DISK"
-#grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+grub-install --target=i386-pc "/dev/$DISK" #BIOS
+#grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB #UEFI
 
 read -rp 'generating grub config...'
 grub-mkconfig -o /boot/grub/grub.cfg
