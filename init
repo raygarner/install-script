@@ -15,6 +15,7 @@ fdisk "/dev/$DISK"
 #eg 1
 read -rp 'enter the swap partition number: ' SWAP_NO
 read -rp 'enter the filesystem partition number: ' FS_NO
+#read -rp 'enter the efi partition number: ' EFI_NO
 
 read -rp 'making filesystem...'
 mkfs.ext4 "/dev/$DISK$FS_NO"
@@ -25,6 +26,8 @@ swapon "/dev/$DISK$SWAP_NO"
 
 read -rp 'mounting fs...'
 mount "/dev/$DISK$FS_NO" /mnt
+#mkdir /mnt/efi
+#mount "/dev/$DISK$EFI_NO" /mnt/efi
 
 read -rp 'installing arch...'
 pacstrap /mnt base linux linux-firmware wpa_supplicant netctl dhcpcd vim grub efibootmgr git vi sudo dialog
