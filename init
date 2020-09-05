@@ -7,7 +7,7 @@ loadkeys uk
 read -rp 'enabling time and date...'
 timedatectl set-ntp true
 
-#eg sda1
+#eg sda
 read -rp 'enter disk to install arch on: ' DISK
 
 fdisk "/dev/$DISK"
